@@ -26,8 +26,9 @@ BASE_PARAMS = dict(USER=USER, PWD=PASSWORD, SIGNATURE=SIGNATURE, VERSION=VERSION
 ENDPOINT = "https://api-3t.paypal.com/nvp"
 SANDBOX_ENDPOINT = "https://api-3t.sandbox.paypal.com/nvp"
 
-EXPRESS_ENDPOINT = "https://www.paypal.com/webscr?cmd=_express-checkout&%s"
-SANDBOX_EXPRESS_ENDPOINT = "https://www.sandbox.paypal.com/webscr?cmd=_express-checkout&%s"
+EXPRESS_ENDPOINT_PATH = getattr(settings, 'PAYPAL_EXPRESS_ENDPOINT_PATH', 'webscr')
+EXPRESS_ENDPOINT = "https://www.paypal.com/{}?cmd=_express-checkout&%s".format(EXPRESS_ENDPOINT_PATH)
+SANDBOX_EXPRESS_ENDPOINT = "https://www.sandbox.paypal.com/{}?cmd=_express-checkout&%s".format(EXPRESS_ENDPOINT_PATH)
 
 
 log = logging.getLogger('paypal.pro')
